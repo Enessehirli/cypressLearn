@@ -33,11 +33,30 @@ Cypress.Commands.add('login', (username, password) => {
 //With session
 Cypress.Commands.add('loginWithSession', (username, password) => {
     cy.session([username, password], () => {
-        cy.visit('https://react-redux.realworld.io')
+        cy.visit('https://react-redux.realworld.io/')
         cy.contains('Sign in').click()
         cy.get("input[placeholder = 'Email']").type(username)
         cy.get("input[placeholder = 'Password']").type(password)
         cy.get("button[type = 'submit']").click()
         cy.get('nav > div > ul > li:nth-child(2) > a').should('be.visible').and('contain', 'New Post')
     })
+})
+
+import trendyolpage from "../pageObjectModel/trendyolpage"
+
+
+Cypress.Commands.add('trendyolLogin',(username, password) => {
+
+trendyolpage.navigate
+trendyolpage.popUpAccept.click()
+trendyolpage.girişyapButtonu.click()
+trendyolpage.emailBox.type(username)
+trendyolpage.passwordBox.type(password)
+trendyolpage.loginButton.click()
+
+
+
+
+
+
 })
